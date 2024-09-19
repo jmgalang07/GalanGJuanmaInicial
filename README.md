@@ -7,5 +7,6 @@ Este proyecto es un ejemplo para saber como tenemos que usar el markdown y githu
 - Servlets
 - Ficheros war
 
-*El servlets que hemos usado nosotros ha sido:*
+*El servlets que hemos usado nosotros ha sido: *
+
 1.Apache Tomcat or TomEE

@@ -9,4 +9,4 @@ Este proyecto es un ejemplo para saber como tenemos que usar el markdown y githu
 
 *El servlets que hemos usado nosotros ha sido: *
 
-1.Apache Tomcat or TomEE
+1. Apache Tomcat or TomEE

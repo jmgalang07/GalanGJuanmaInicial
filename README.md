@@ -3,6 +3,9 @@
 Este proyecto es un ejemplo para saber como tenemos que usar el markdown y github
 
 **Hemos aprendido cosas como:**
-- Controlador
+- Controladores
 - Servlets
 - Ficheros war
+
+*El servlets que hemos usado nosotros ha sido:*
+1.Apache Tomcat or TomEE

@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Entrada de datos</h1>
-        <form action="../Datos" method="post">
+        <form action="../Mapa" method="post">
                 
                 <label>Nombre: </label>
                 <input type="text" name="nombre"/>  
@@ -19,9 +19,8 @@
                 
                 <br><br>
                 
-                <label for="fecha">Fecha de nacimiento: </label>
-                <input type="date" id="fecha" name="fecha"> 
-               
+                <label>Fecha de nacimiento: </label>
+                <input type="date" id="fecha" name="fecha_nacimiento"> 
                 <br><br>
                 
                 <label>Aficiones: </label> <br> <br>
@@ -33,7 +32,7 @@
                 <br><br>
                 
                 <label>Sistema operativo: </label> 
-                <select name="lista1" id="lt1">
+                <select name="sistema_operativo" id="lt1">
                     <option value="0" selected disabled>Elige uno...</option>
                     <option value="Windows">Windows</option>
                     <option value="Linux">Linux</option>
@@ -50,7 +49,7 @@
                 
                 <br>
                 
-                <input type="submit"/> 
+                <input type="submit" name="enviar"/> 
         </form>
     </body>
 </html>

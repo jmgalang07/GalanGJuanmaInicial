@@ -2,7 +2,7 @@ package es.albarregas.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Juanma
  */
-@WebServlet(name = "Mapa", urlPatterns = {"/Mapa"})
-public class Mapa extends HttpServlet {
+@WebServlet(name = "Enumer", urlPatterns = {"/Enumer"})
+public class Enumer extends HttpServlet {
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -35,9 +35,8 @@ public class Mapa extends HttpServlet {
             out.println("<title>Formulario</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Entrada de datos por MAPA (Mapa)</h1>");
-
-            out.println("<form action='Mapa' method='POST'>");  // El formulario apunta al servlet 'Mapa'
+            out.println("<h1>Entrada de datos por ENUMERATION (Enumer)</h1>");
+            out.println("<form action='Enumer' method='POST'>");  // El formulario apunta al controlador 'Enumer'
 
             out.println("<label>Nombre: </label>");
             out.println("<input type='text' name='nombre'/>");
@@ -73,7 +72,7 @@ public class Mapa extends HttpServlet {
             out.println("<input type='radio' value='Hombre' name='sexo'/>&nbsp;&nbsp; Hombre<br>");
             out.println("<input type='radio' value='Otro' name='sexo'/>&nbsp;&nbsp; Otro<br>");
             out.println("<br>");
-
+            
             out.println("input type='submit' name='enviar'");
             out.println("<br><br>");
 
@@ -103,21 +102,20 @@ public class Mapa extends HttpServlet {
             out.println("<title>Resultado de Parámetros</title>");
             out.println("</head>");
             out.println("<body>");
-
-            // Obtengo el mapa de parámetros
-            Map<String, String[]> parametros = request.getParameterMap();
-
-            // Itero sobre el mapa de parámetros
-            for (Map.Entry<String, String[]> entry : parametros.entrySet()) {
-                String nombre = entry.getKey();
+            Enumeration<String> parametros = request.getParameterNames();  // getParametersName devuelve el valor
+            while (parametros.hasMoreElements()) {
+                String nombre = parametros.nextElement();
 
                 // Convierto la primera letra en mayúscula
                 String nombreCapitalizado = nombre.substring(0, 1).toUpperCase() + nombre.substring(1);
 
-                String[] valores = entry.getValue();  // Obtengo los valores del parámetro
+                String[] valores = request.getParameterValues(nombre); // Obtengo todos los valores del parámetro
                 if (valores != null) {
                     String concatenados = String.join(", ", valores);
-                    out.println("<p>" + nombreCapitalizado + ": " + concatenados + "</p>");
+                    out.println(nombreCapitalizado + ": " + concatenados + "<br><br>");
+                } else {
+                    // Muestro el valor único
+                    out.println(nombreCapitalizado + ": " + request.getParameter(nombre) + "<br><br>");
                 }
             }
             out.println("</body>");

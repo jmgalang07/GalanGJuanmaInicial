@@ -36,8 +36,6 @@ public class Controlador extends HttpServlet {
             out.println("<title>Servlet Controlador</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Controlador at " + request.getContextPath() + "</h1>");
-            out.println("<h2>Llamada realiza por el m&eacute;todo  " + request.getMethod() + "</h2>");
             Enumeration<String> parametros = request.getParameterNames();  //getParametersName devuelve el valor
             while(parametros.hasMoreElements()){
                 String nombre = parametros.nextElement();

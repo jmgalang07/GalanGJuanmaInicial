@@ -25,6 +25,7 @@ ul{
 }
 li{
     font-family: cursive;
+    filter: drop-shadow(2px 2px 1px cyan);
 }
 a{
     font-weight: 900;

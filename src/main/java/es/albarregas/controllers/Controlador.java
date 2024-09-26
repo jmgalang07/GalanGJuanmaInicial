@@ -29,24 +29,15 @@ public class Controlador extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Controlador</title>");            
+            out.println("<title>Formulario</title>");
             out.println("</head>");
             out.println("<body>");
-            Enumeration<String> parametros = request.getParameterNames();  //getParametersName devuelve el valor
-            while(parametros.hasMoreElements()){
-                String nombre = parametros.nextElement();
-                 out.println("<p>El valor del para&acute;metro " + nombre + " es " + request.getParameter(nombre) + "</p>"); 
-            }
-            
-            /*if(request.getParameter("param1") != null){
-               out.println("<p>El valor del para&acute;metro param 1 es " + request.getParameter("param1") + "</p>"); 
-            }*/
-            
-            out.println("<a href='.'>Volver al menú" + "</a>");
+            out.println("<h1>¡¡ERROR!! No se puede acceder al controlador sin pasar por el formulario.</h1>");
+            out.println("<a href='.'>Volver al menú</a>");
+            out.println("</form>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,7 +54,27 @@ public class Controlador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doGet(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Resultado de Parámetros</title>");
+            out.println("</head>");
+            out.println("<body>");
+
+            // Obtenemos los parámetros enviados desde el formulario
+            Enumeration<String> parametros = request.getParameterNames();
+            while (parametros.hasMoreElements()) {
+                String nombre = parametros.nextElement();
+                String valor = request.getParameter(nombre);
+                out.println("<p>El valor del parámetro <strong>" + nombre + "</strong> es: " + valor + "</p>");
+            }
+
+            out.println("<a href='.'>Volver al menú</a>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     /**
@@ -74,5 +85,5 @@ public class Controlador extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 }

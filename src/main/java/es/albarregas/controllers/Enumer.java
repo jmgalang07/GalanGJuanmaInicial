@@ -35,48 +35,8 @@ public class Enumer extends HttpServlet {
             out.println("<title>Formulario</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Entrada de datos por ENUMERATION (Enumer)</h1>");
-            out.println("<form action='Enumer' method='POST'>");  // El formulario apunta al controlador 'Enumer'
-
-            out.println("<label>Nombre: </label>");
-            out.println("<input type='text' name='nombre'/>");
-            out.println("<br><br>");
-
-            out.println("<label>Apellidos: </label>");
-            out.println("<input type='text' name='apellidos'/>");
-            out.println("<br><br>");
-
-            out.println("<label>Fecha de nacimiento: </label>");
-            out.println("<input type='date' id='fecha' name='fecha_nacimiento'>");
-            out.println("<br><br>");
-
-            out.println("<label>Aficiones: </label><br><br>");
-            out.println("<input type='checkbox' value='Musica' name='gustos'/>&nbsp;&nbsp; M&uacute;sica");
-            out.println("<input type='checkbox' value='Viajes' name='gustos'/>&nbsp;&nbsp; Viajes");
-            out.println("<input type='checkbox' value='Juegos' name='gustos'/>&nbsp;&nbsp; Juegos");
-            out.println("<input type='checkbox' value='Deportes' name='gustos'/>&nbsp;&nbsp; Deportes");
-            out.println("<br><br>");
-
-            out.println("<label>Sistema operativo: </label>");
-            out.println("<select name='sistema_operativo' id='lt1'>");
-            out.println("<option value='0' selected disabled>Elige uno...</option>");
-            out.println("<option value='Windows'>Windows</option>");
-            out.println("<option value='Linux'>Linux</option>");
-            out.println("<option value='Mac'>Mac</option>");
-            out.println("<option value='Ubuntu'>Ubuntu</option>");
-            out.println("</select>");
-            out.println("<br><br>");
-
-            out.println("<label>G&eacute;nero: </label><br>");
-            out.println("<input type='radio' value='Mujer' name='sexo' checked/>&nbsp;&nbsp; Mujer<br>");
-            out.println("<input type='radio' value='Hombre' name='sexo'/>&nbsp;&nbsp; Hombre<br>");
-            out.println("<input type='radio' value='Otro' name='sexo'/>&nbsp;&nbsp; Otro<br>");
-            out.println("<br>");
-            
-            out.println("input type='submit' name='enviar'");
-            out.println("<br><br>");
-
-            out.println("<a href='../'>Volver al menú</a>");
+            out.println("<h1>¡¡ERROR!! No se puede acceder al controlador sin pasar por el formulario.</h1>");
+            out.println("<a href='.'>Volver al menú</a>");
             out.println("</form>");
             out.println("</body>");
             out.println("</html>");

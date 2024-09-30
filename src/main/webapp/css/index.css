@@ -34,9 +34,14 @@ a{
     display: inline-block;
     padding: 10px 30px;
     font-size: 15px;
-    color: yellow;
+    color: white;
     background-color: black;
     border-radius: 20px;
     text-decoration: none; /* Sin subrayado */
     text-align: center;
+    cursor: pointer;
+}
+a.button:hover{
+    background-color: blue;
+    color: white;
 }

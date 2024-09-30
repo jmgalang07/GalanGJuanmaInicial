@@ -1,0 +1,33 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 27 sept. 2024, 21:19:19
+    Author     : Juanma
+*/
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: black; 
+    margin-top: 20px;
+    margin-right: 20%;
+    margin-left: 20%;
+    padding: 10px;
+    border: 5px solid black;
+    border-radius: 15px;
+    background-color: greenyellow;
+}
+
+.container {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}

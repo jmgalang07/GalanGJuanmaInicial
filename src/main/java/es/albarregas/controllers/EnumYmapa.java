@@ -58,8 +58,10 @@ public class EnumYmapa extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet Datos</title>");
+            out.print("<link rel='stylesheet' type='text/css' href='./css/respuesta.css'/>");
             out.println("</head>");
             out.println("<body>");
+            out.println("<div class='container'>"); // Agrego el contenedor
 
             String enviarFormulario = request.getParameter("enviar");
 
@@ -67,7 +69,7 @@ public class EnumYmapa extends HttpServlet {
             Enumer enviarEnum = new Enumer();
             Mapa enviarMapa = new Mapa();
 
-            // Dependiendo del botón que fue presionado, se llama a uno de los dos métodos
+            // Dependiendo del botón que se presione, llamo a uno de los dos métodos
             if ("Enumeration".equals(enviarFormulario)) {
                 out.println("<h1>Entrada de datos por ENUMERATION</h1>");
                 enviarEnum.doPost(request, response);
@@ -75,6 +77,8 @@ public class EnumYmapa extends HttpServlet {
                 out.println("<h1>Entrada de datos por MAPA</h1>");
                 enviarMapa.doPost(request, response);
             }
+            out.println("<a href='.'>Volver al menú</a>");
+            out.println("</div>");
             out.println("</body>");
             out.println("</html>");
         }

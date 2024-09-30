@@ -60,8 +60,10 @@ public class Mapa extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Resultado de Parámetros</title>");
+            out.print("<link rel='stylesheet' type='text/css' href='./css/respuesta.css'/>");
             out.println("</head>");
             out.println("<body>");
+            out.println("<div class='container'>"); // Agrego el contenedor
 
             // Obtengo el mapa de parámetros
             Map<String, String[]> parametros = request.getParameterMap();
@@ -76,9 +78,11 @@ public class Mapa extends HttpServlet {
                 String[] valores = entry.getValue();  // Obtengo los valores del parámetro
                 if (valores != null) {
                     String concatenados = String.join(", ", valores);
-                    out.println("<p>" + nombreCapitalizado + ": " + concatenados + "</p>");
+                    out.println(nombreCapitalizado + ": " + concatenados + "<br><br>");
                 }
             }
+            out.println("<a href='.'>Volver al menú</a>");
+            out.println("</div>");
             out.println("</body>");
             out.println("</html>");
         }

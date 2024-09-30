@@ -33,6 +33,7 @@ public class Enumer extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Formulario</title>");
+
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>¡¡ERROR!! No se puede acceder al controlador sin pasar por el formulario.</h1>");
@@ -60,8 +61,10 @@ public class Enumer extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Resultado de Parámetros</title>");
+            out.print("<link rel='stylesheet' type='text/css' href='./css/respuesta.css'/>");
             out.println("</head>");
             out.println("<body>");
+            out.println("<div class='container'>"); // Agrego el contenedor
             Enumeration<String> parametros = request.getParameterNames();  // getParametersName devuelve el valor
             while (parametros.hasMoreElements()) {
                 String nombre = parametros.nextElement();
@@ -78,6 +81,8 @@ public class Enumer extends HttpServlet {
                     out.println(nombreCapitalizado + ": " + request.getParameter(nombre) + "<br><br>");
                 }
             }
+            out.println("<a href='.'>Volver al menú</a>");
+            out.println("</div>");
             out.println("</body>");
             out.println("</html>");
         }

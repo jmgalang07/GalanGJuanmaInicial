@@ -63,7 +63,7 @@ public class Controlador extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
 
-            // Obtenemos los parámetros enviados desde el formulario
+            // Obtengo los parámetros enviados desde el formulario
             Enumeration<String> parametros = request.getParameterNames();
             while (parametros.hasMoreElements()) {
                 String nombre = parametros.nextElement();

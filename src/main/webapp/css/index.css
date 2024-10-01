@@ -7,6 +7,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : Juanma
 */
 
+body {
+    font-family: Tahoma, sans-serif; 
+    background-color: #f4f4f9; 
+    margin: 0;
+    padding: 0;
+}
 h1{
     background-image: linear-gradient(to left, red, yellow, orchid, aqua, orange);
     justify-content: center;
@@ -28,20 +34,21 @@ li{
     filter: drop-shadow(2px 2px 1px cyan);
 }
 a{
-    font-weight: 900;
+    font-weight: bold;
 }
 .button {
-    display: inline-block;
-    padding: 10px 30px;
-    font-size: 15px;
-    color: white;
-    background-color: black;
-    border-radius: 20px;
-    text-decoration: none; /* Sin subrayado */
-    text-align: center;
-    cursor: pointer;
+    display: inline-block; 
+    padding: 10px 30px; 
+    font-size: 15px; 
+    color: white; 
+    background-color: black; 
+    border-radius: 20px; 
+    text-decoration: none; 
+    text-align: center; 
+    transition: background-color 0.8s, transform 0.5s; 
 }
 a.button:hover{
     background-color: blue;
+    transform: scale(1.35);
     color: white;
 }

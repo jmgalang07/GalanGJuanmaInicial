@@ -8,14 +8,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 body {
+    background-color: #f4f4f9;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
-    background-color: white;
 }
-
 h1 {
     background-color: red;
     justify-content: center;
@@ -75,5 +74,15 @@ input[type="submit"] {
 
 a {
     margin-top: 20px;
-    color: black;
+    font-weight: bold;
+    color: #007BFF;
+    padding: 10px 15px;
+    border-radius: 15px;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+a:hover {
+    background-color: cyan;
+    color: blue;
+    border: 3px solid blue;
 }

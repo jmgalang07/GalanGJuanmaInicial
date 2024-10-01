@@ -65,7 +65,7 @@ public class Validador extends HttpServlet {
                 String nombre = parametros.nextElement();
 
                 // Convierto la primera letra en mayúscula
-                String nombreCapitalizado = nombre.substring(0, 1).toUpperCase() + nombre.substring(1);
+                //String nombreCapitalizado = nombre.substring(0, 1).toUpperCase() + nombre.substring(1);
 
                 // Obtengo todos los valores del parámetro
                 String[] valores = request.getParameterValues(nombre);
@@ -143,6 +143,10 @@ public class Validador extends HttpServlet {
 
                 // Botón de enviar
                 formulario.append("<input type='submit' name='enviar'/>");
+                formulario.append("<br><br>");
+                
+                // Enlace que me lleva al menú inicial
+                formulario.append("<a href='.'>Volver al menú</a>");
 
                 formulario.append("</form>");
                 formulario.append("</body>");

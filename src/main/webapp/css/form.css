@@ -8,21 +8,31 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 body {
+    background-color: #f4f4f9;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
-    background-color: white;
 }
-
+h3{
+    filter: drop-shadow(2px 2px 1px orchid);
+}
+p{
+    background-color: orange;
+    justify-content: center;
+    display: flex;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
 h1 {
     background-color: black;
     color: yellow;
     justify-content: center;
     display: flex;
     padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-size: 24px;
     border-radius: 10px;
 }
@@ -64,8 +74,17 @@ input[type="submit"] {
     background-color: red;
     color: white;
 }
-
 a {
     margin-top: 20px;
-    color: black;
+    font-weight: bold;
+    color: #007BFF;
+    padding: 10px 15px;
+    border-radius: 15px;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+a:hover {
+    background-color: cyan;
+    color: blue;
+    border: 3px solid blue;
 }

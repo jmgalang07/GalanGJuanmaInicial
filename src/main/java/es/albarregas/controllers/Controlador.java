@@ -62,7 +62,7 @@ public class Controlador extends HttpServlet {
             out.println("<title>Resultado de Parámetros</title>");
             out.println("</head>");
             out.println("<body>");
-
+            out.println("<h1>Servlet Controlador at " + request.getContextPath() + "</h1>");
             // Obtengo los parámetros enviados desde el formulario
             Enumeration<String> parametros = request.getParameterNames();
             while (parametros.hasMoreElements()) {

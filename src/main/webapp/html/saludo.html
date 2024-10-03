@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/saludo.css"/>
+    </head>
+    <body>
+        <form action="../jsp/saludo.jsp" method="POST">
+            <div id="contenido">
+                <table>
+                    <tr>
+                        <td><label>Nombre: </label></td>
+                        <td><input type="text" name="nombre" id="nombre"/></td>  
+                    </tr>
+                    
+                    <tr>
+                        <td><label>Genero: </label></td>
+                        <td><input type="radio" value="Hombre" name="sexo">&nbsp;&nbsp; Hombre</td>  
+                        <td><input type="radio" value="Mujer" name="sexo" checked>&nbsp;&nbsp; Mujer</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2"><input type="submit" name="enviar" value="Enviar"/></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </body>
+</html>

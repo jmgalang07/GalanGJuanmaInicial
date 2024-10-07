@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <title>Formulario centrado</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../css/edad.css"/>
+    </head>
+    <body>
+        <div id="contenedor">
+            <h1>Calcular edad de una persona</h1>
+            <form action="../jsp/edad.jsp" method="POST">
+                <div class="label-input">
+                    <label>Nombre: </label>
+                    <input type="text" name="nombre"/>  
+                </div>
+                
+                <div class="label-input">
+                    <label>Fecha de nacimiento: </label>
+                    <input type="date" id="fecha" name="fecha_nacimiento"> 
+                </div>
+
+                <input type="submit" name="enviar" value="Enviar"/>
+                <br><br>
+                <a href='../'>Volver al menú</a>
+            </form>
+        </div>
+    </body>
+</html>

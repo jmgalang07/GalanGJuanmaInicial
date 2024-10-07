@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Calendar" %>
-<%@ page import="java.util.Locale" %>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -13,7 +12,7 @@
         <div id="contenido">
             <h2>CALCULADORA</h2>
             <%
-                SimpleDateFormat fecha = new SimpleDateFormat("dd 'de' MMMM 'de' yyyy", new Locale("es", "ES"));
+                SimpleDateFormat fecha = new SimpleDateFormat("EEEE d ' de' MMMM 'de' yyyy");
                 String fechaFormateada = fecha.format(Calendar.getInstance().getTime());
             %>
             <h3><%= fechaFormateada%></h3>
@@ -65,10 +64,11 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <button type="submit">Calcular</button>
+                            <button type="submit">Enviar</button>
                         </td>
                     </tr>
                 </table>
+                    <!-- <input type="button" value="Menú" onClick="window.location.href=''"> -->
                 <p><a href="<%=request.getContextPath()%>">Menú</a></p>
             </form>
             <%

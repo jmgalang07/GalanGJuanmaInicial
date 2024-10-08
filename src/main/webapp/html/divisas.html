@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Calculadora de Divisas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../css/divisas.css"/>
+    </head>
+    <body>
+        <h1>Calculadora de Divisas</h1>
+        <form method="post" action="../jsp/divisas.jsp">
+            <label for="numero">Cantidad:</label>
+            <input type="number" name="numero" min="0" required id="numero">
+
+            <label for="lt1">Moneda de origen:</label>
+            <select name="moneda" id="lt1" required>
+                <option value="" selected disabled>Elige una...</option>
+                <option value="EUR">Euro</option>
+                <option value="USD">Dólar</option>
+                <option value="JPY">Yenes</option>
+                <option value="GBP">Libras esterlinas</option>
+            </select>
+
+            <label for="lt2">Moneda de destino:</label>
+            <select name="monedas" id="lt2" required>
+                <option value="" selected disabled>Elige una...</option>
+                <option value="EUR">Euro</option>
+                <option value="USD">Dólar</option>
+                <option value="JPY">Yenes</option>
+                <option value="GBP">Libras esterlinas</option>
+            </select>
+            <br>
+
+            <button type="submit">Convertir</button>
+
+            <br>
+            <a href="../">Menú</a>
+            <br>
+            <input type="reset" name="reset" value="Limpiar">
+        </form>
+
+    </body>
+</html>

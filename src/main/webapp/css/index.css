@@ -1,50 +1,51 @@
 body {
     font-family: Tahoma, sans-serif;
-    background-color: #f4f4f9;
+    background-color: #f0f4f8;
     margin: 0;
     padding: 0;
 }
 
 h1 {
     background-image: linear-gradient(to left, red, yellow, orchid, aqua, orange);
-    justify-content: center;
     display: flex;
+    justify-content: center;
     padding: 20px;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin: 20px 10%;
     font-size: 24px;
-    border: 5px solid black;
     border-radius: 10px;
-}
-h2{
-    text-align: center;
-    background-image: linear-gradient(to left, red, yellow, red);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border: 3px solid black;
+}
+
+h2 {
+    text-align: center;
+    background-color: #f8f9fa;
+    color: #343a40;
+    border: 4px solid #007BFF;
     border-radius: 20px;
     padding: 15px;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin: 10px 0;
 }
 
 .flex-container {
     display: flex;
     justify-content: space-between;
-    margin: 20px;
+    margin: 20px 10%;
+    gap: 20px;
 }
 
 #controladores, #jsp {
-    width: 49%;
-    border: 2px solid black;
-}
-
-.controladores {
-    display: flex;
-    flex-direction: column;
+    width: 48%;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 li {
     font-family: cursive;
-    filter: drop-shadow(2px 2px 1px cyan);
+    color: #495057;
+    margin: 10px 0;
 }
 
 a {
@@ -56,15 +57,76 @@ a {
     padding: 10px 30px;
     font-size: 15px;
     color: white;
-    background-color: black;
+    background-color: #28A745;
     border-radius: 20px;
     text-decoration: none;
     text-align: center;
-    transition: background-color 0.8s, transform 0.5s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-a.button:hover {
-    background-color: blue;
-    transform: scale(1.35);
-    color: white;
+.button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+
+
+
+
+
+/* Animaciones */
+@-webkit-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-o-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-webkit-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@-o-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+
+/* Main styles */
+body {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
+  
+  -webkit-animation: bg-scrolling-reverse .92s infinite; /* Safari 4+ */
+  -moz-animation: bg-scrolling-reverse .92s infinite; /* Fx 5+ */
+  -o-animation: bg-scrolling-reverse .92s infinite; /* Opera 12+ */
+  animation: bg-scrolling-reverse .92s infinite; /* IE 10+ */
+  
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
 }

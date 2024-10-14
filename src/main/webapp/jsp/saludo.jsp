@@ -10,19 +10,25 @@
     </head>
     <body>
         <%
+            // Inicializo un StringBuilder para construir el mensaje de saludo
             StringBuilder mensaje = new StringBuilder("Buen");
+            // Obtengo la hora actual
             int hora = LocalTime.now().getHour();
+            // Determino el género del usuario según el parámetro recibido
             String genero = (request.getParameter("sexo").equals("Hombre")) ? " señor " : " señora ";
+
+            // Según la hora actual, agrego el saludo correspondiente
             if (hora >= 7 & hora < 12) {
-                mensaje.append("os días");
-            } else if (hora >= 12 & hora < 8) {
-                mensaje.append("as tardes");
+                mensaje.append("os días"); // Saludo de la mañana
+            } else if (hora >= 12 & hora < 20) {
+                mensaje.append("as tardes"); // Saludo de la tarde
             } else {
-                mensaje.append("as noches");
+                mensaje.append("as noches"); // Saludo de la noche
             }
+            // Agrego el género y el nombre del usuario al mensaje
             mensaje.append(genero).append(request.getParameter("nombre"));
         %>
-        <h2><%=mensaje.toString()%></h2>
-        <p><a href="<%=request.getContextPath()%>">Menú</a></p>
+        <h2><%=mensaje.toString()%></h2> <!-- Muestro el mensaje de saludo en la página -->
+        <p><a href="<%=request.getContextPath()%>">Menú</a></p> <!-- Enlace de retorno al menú -->
     </body>
 </html>

@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.text.DecimalFormat"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,63 +11,89 @@
         <div id="contenedor">
             <h1>🪙 Cambio de Monedas y Billetes 💵</h1>
             <%
+                // Creo un StringBuilder para acumular los resultados
+                StringBuilder resultado = new StringBuilder();
+
+                // Obtengo el precio del producto y el dinero entregado desde los parámetros de la solicitud
                 double precioProducto = Double.parseDouble(request.getParameter("precio"));
                 double entregado = Double.parseDouble(request.getParameter("numeroEntregado"));
+
+                // Calculo el cambio a devolver
                 double cambio = entregado - precioProducto;
 
-                if (cambio < 0) {
-                    out.println("<h2>El dinero entregado es insuficiente.</h2>");
-                } else if (cambio == 0) {
-                    out.println("<h2>No hay cambio que devolver.</h2>");
-                } else {
-                    out.println("<h2>El cambio a devolver es: " + cambio + " €</h2>");
-                    out.println("<div class='monedas-contenedor'>");
+                // Utilizo un formateador para mostrar dos decimales
+                DecimalFormat df = new DecimalFormat("0.00");
 
-                    double empezar = 500;
+                // Verifico si el dinero entregado es insuficiente
+                if (cambio < 0) {
+                    resultado.append("<h2>El dinero entregado es insuficiente.</h2>");
+                } // Verifico si no hay cambio que devolver
+                else if (cambio == 0) {
+                    resultado.append("<h2>No hay cambio que devolver.</h2>");
+                } // Si hay cambio, calculo y muestro las denominaciones a devolver
+                else {
+                    resultado.append("<h2>El cambio a devolver es: " + df.format(cambio) + " €</h2>");
+                    resultado.append("<div class='monedas-contenedor'>");
+
+                    // Establezco la denominación inicial (500 euros)
+                    double denominacion = 500;
                     int dineroRestar;
 
+                    // Mientras haya cambio que devolver
                     while (cambio > 0.009) {
-                        dineroRestar = (int)(cambio / empezar); 
+                        // Calculo cuántas denominaciones se pueden devolver
+                        dineroRestar = (int) (cambio / denominacion);
+
+                        // Si hay dinero a devolver de esa denominación
                         if (dineroRestar > 0) {
-                            cambio -= dineroRestar * empezar; 
-                            cambio = Math.round(cambio * 100.0) / 100.0; // Redondeo para evitar errores
+                            // Reduzco el cambio a devolver
+                            cambio -= dineroRestar * denominacion;
+                            // Redondeo el cambio para evitar errores
+                            cambio = Math.round(cambio * 100.0) / 100.0;
 
-                            out.println("<div class='moneda-billete'>");
-                            out.println("<span class='cantidad'>" + dineroRestar + "</span>");
+                            // Agrego la cantidad de monedas/billetes a los resultados
+                            resultado.append("<div class='moneda-billete'>");
+                            resultado.append("<span class='cantidad'>" + dineroRestar + "</span>");
 
-                            //Muestro la imagen
-                            if (empezar >= 2) {
-                                out.println("<img src='../img/" + (int)empezar + "euros.jpg' alt='" + empezar + " €' class='img-monedas'>");
-                            } else if (empezar == 1) {
-                                out.println("<img src='../img/1euros.jpg' alt='1 €' class='img-monedas'>");
+                            // Muestro la imagen correspondiente a la denominación
+                            if (denominacion >= 2) {
+                                resultado.append("<img src='../img/" + (int) denominacion + "euros.jpg' alt='" + denominacion + " €' class='img-monedas'>");
+                            } else if (denominacion == 1) {
+                                resultado.append("<img src='../img/1euros.jpg' alt='1 €' class='img-monedas'>");
                             } else {
-                                out.println("<img src='../img/" + ((int)(empezar * 100)) + "centimos.jpg' alt='" + empezar + " €' class='img-monedas'>");
+                                resultado.append("<img src='../img/" + ((int) (denominacion * 100)) + "centimos.jpg' alt='" + denominacion + " €' class='img-monedas'>");
                             }
-
-                            out.println("</div>");
+                            resultado.append("</div>");
                         }
 
-                        // Disminuir la denominación para la siguiente iteración
-                        if (empezar == 500) empezar = 200;
-                        else if (empezar == 200) empezar = 100;
-                        else if (empezar == 100) empezar = 50;
-                        else if (empezar == 50) empezar = 20;
-                        else if (empezar == 20) empezar = 10;
-                        else if (empezar == 10) empezar = 5;
-                        else if (empezar == 5) empezar = 2;
-                        else if (empezar == 2) empezar = 1;
-                        else if (empezar == 1) empezar = 0.50;
-                        else if (empezar == 0.50) empezar = 0.20;
-                        else if (empezar == 0.20) empezar = 0.10;
-                        else if (empezar == 0.10) empezar = 0.05;
-                        else if (empezar == 0.05) empezar = 0.02;
-                        else if (empezar == 0.02) empezar = 0.01;
+                        // Disminuyo la denominación para la siguiente iteración
+                        if (denominacion == 500) denominacion = 200;
+                        else if (denominacion == 200) denominacion = 100;
+                        else if (denominacion == 100) denominacion = 50;
+                        else if (denominacion == 50) denominacion = 20;
+                        else if (denominacion == 20) denominacion = 10;
+                        else if (denominacion == 10) denominacion = 5;
+                        else if (denominacion == 5) denominacion = 2;
+                        else if (denominacion == 2) denominacion = 1;
+                        else if (denominacion == 1) denominacion = 0.50;
+                        else if (denominacion == 0.50) denominacion = 0.20;
+                        else if (denominacion == 0.20) denominacion = 0.10;
+                        else if (denominacion == 0.10) denominacion = 0.05;
+                        else if (denominacion == 0.05) denominacion = 0.02;
+                        else if (denominacion == 0.02) denominacion = 0.01;
                     }
-                    out.println("</div>");
+
+                    resultado.append("</div>");
                 }
-            %>
-            <a href="../html/monedero.html">Volver al monedero</a>
-            <p><a href="<%= request.getContextPath()%>">Menú</a></p>
+
+                // Finalmente, imprimo el contenido acumulado en el StringBuilder
+%>
+            <%= resultado.toString()%> 
+
+            <div class="botones">
+                <input type="submit" name="enviar" value="Volver al monedero" onClick="location.href = '../html/monedero.html'"/> 
+                <input type="button" name="enviar" value="Menú" onClick="location.href = '<%= request.getContextPath()%>'"/>
+            </div>
         </div>
     </body>
 </html>

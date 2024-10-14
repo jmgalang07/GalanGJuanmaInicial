@@ -13,23 +13,24 @@
             <h1>Calculadora de divisas</h1>
 
             <%
-                // Comprueba si se han enviado los datos
+                // Compruebo si se han enviado los datos desde el formulario
                 String cantidadStr = request.getParameter("numero");
                 String divisaOrigen = request.getParameter("moneda");
                 String divisaDestino = request.getParameter("monedas");
 
-                // Si los parámetros son nulos o vacíos, muestra el formulario de nuevo
+                // Verifico si alguno de los parámetros es nulo o está vacío
                 if (cantidadStr == null || cantidadStr.isEmpty() || divisaOrigen == null || divisaDestino == null) {
             %>
             <p>Error: Debes completar el formulario para realizar la conversión.</p>
             <a href="<%= request.getContextPath()%>/html/divisas.html">Volver al formulario</a>
             <%
-                    return; // Detiene la ejecución del JSP
+                    return; // Detengo la ejecución del JSP si faltan datos
                 }
 
+                // Intento convertir la cantidad ingresada a un número decimal
                 double cantidad = Double.parseDouble(cantidadStr);
 
-                // Tasas de cambio
+                // Defino las tasas de cambio para las distintas divisas
                 double tasaEurosADolares = 1.10;
                 double tasaEurosAYenes = 130.50;
                 double tasaEurosALibras = 0.85;
@@ -46,13 +47,13 @@
                 double tasaLibrasADolares = 1.30;
                 double tasaLibrasAYenes = 153.20;
 
-                // Variable para el resultado final
+                // Inicializo la variable que contendrá el resultado de la conversión
                 double resultado = 0.0;
 
-                // Formatear los números usando el formato español
+                // Formateo los números para mostrarlos en formato español
                 NumberFormat formateador = NumberFormat.getInstance(new Locale("es", "ES"));
 
-                // Lógica para convertir divisas o mantener el valor si son iguales
+                // Lógica para realizar la conversión de divisas
                 if (divisaOrigen.equals(divisaDestino)) {
                     // Si la divisa de origen y destino son iguales, el resultado es la misma cantidad
                     resultado = cantidad;
@@ -90,10 +91,10 @@
                     }
                 }
 
-                // Muestra el resultado
+                // Muestro el resultado de la conversión
                 if (resultado != 0.0) {
             %>
-            <p><%= formateador.format(cantidad) %> <%= divisaOrigen %> son <%= formateador.format(resultado) %> <%= divisaDestino %>.</p>
+            <p><%= formateador.format(cantidad)%> <%= divisaOrigen%> son <%= formateador.format(resultado)%> <%= divisaDestino%>.</p>
             <%
             } else {
             %>

@@ -13,10 +13,10 @@
             <h1>Juego del número secreto</h1>
             <p>El ordenador "piensa" un número y tenemos que averiguarlo en la menor cantidad de intentos posible</p>
             <%
-                Integer numeroSecreto = null; // Número secreto
-                Integer intentos = 0; // Contador de intentos
-                String mensaje = ""; // Mensaje al usuario
-                List<String> historial = new ArrayList<>(); // Historial de intentos
+                Integer numeroSecreto = null; // Declaro la variable para el número secreto
+                Integer intentos = 0; // Declaro el contador de intentos
+                String mensaje = ""; // Declaro el mensaje que se mostrará al usuario
+                List<String> historial = new ArrayList<>(); // Inicializo una lista para el historial de intentos
 
                 // Obtengo los valores del formulario
                 String inputNumeroSecreto = request.getParameter("numeroSecreto");
@@ -24,39 +24,44 @@
                 String inputHistorial = request.getParameter("historial");
                 String inputNumero = request.getParameter("numero");
 
-                // Si hay un número secreto ya proporcionado, se utiliza
+                // Verifico si ya se ha proporcionado un número secreto
                 if (inputNumeroSecreto != null) {
-                    numeroSecreto = Integer.parseInt(inputNumeroSecreto); // Obtengo el número secreto del formulario
+                    // Si existe, lo obtengo del formulario
+                    numeroSecreto = Integer.parseInt(inputNumeroSecreto);
                     if (inputIntentos != null) {
-                        intentos = Integer.parseInt(inputIntentos); // Obtengo el contador de intentos del formulario
+                        intentos = Integer.parseInt(inputIntentos); // Obtengo el contador de intentos
                     }
                     if (inputHistorial != null) {
+                        // Divido el historial en registros y los agrego a la lista
                         String[] registros = inputHistorial.split(",");
                         for (String registro : registros) {
                             historial.add(registro); // Agrego cada registro al historial
                         }
                     }
                 } else {
+                    // Si no existe, genero un nuevo número secreto aleatorio entre 1 y 100
                     numeroSecreto = (int) (Math.random() * 100) + 1;
                 }
 
-                // Procesar el número ingresado por el usuario
+                // Proceso el número ingresado por el usuario
                 if (inputNumero != null && !inputNumero.isEmpty()) {
                     try {
                         int numeroUsuario = Integer.parseInt(inputNumero); // Convierto el número ingresado a entero
-                        intentos++; //
+                        intentos++; // Incremento el contador de intentos
 
+                        // Verifico si el número ingresado es el correcto
                         if (numeroUsuario == numeroSecreto) {
-                            mensaje = "Acertado";
-                            historial.add(numeroUsuario + " - " + mensaje);
+                            mensaje = "Acertado"; // Mensaje si el usuario acierta
+                            historial.add(numeroUsuario + " - " + mensaje); // Agrego al historial
                         } else if (numeroUsuario > numeroSecreto) {
-                            mensaje = "El que he pensado es menor";
+                            mensaje = "El que he pensado es menor"; // Mensaje si el número es mayor
                             historial.add(numeroUsuario + " - " + mensaje);
                         } else {
-                            mensaje = "El que he pensado es mayor";
+                            mensaje = "El que he pensado es mayor"; // Mensaje si el número es menor
                             historial.add(numeroUsuario + " - " + mensaje);
                         }
                     } catch (NumberFormatException e) {
+                        // Manejo el error si el número no es válido
                         mensaje = "Por favor, introduce un número válido.";
                     }
                 }
@@ -86,7 +91,7 @@
                 <tbody>
                     <% for (String registro : historial) { %>
                     <%
-                        // Me aseguro de que el registro contiene el separador
+                        // Verifico que el registro contenga el separador correcto
                         String[] partes = registro.split(" - ");
                         if (partes.length == 2) {%>
                     <tr>
@@ -100,13 +105,13 @@
             <% } %>
 
             <% if (mensaje.equals("Acertado")) {%>
-            <p>Conseguido en <%= intentos%> intentos</p>
+            <p>Conseguido en <%= intentos%> intentos</p> <!-- Muestro los intentos realizados -->
             <% } %>
 
             <%
                 // Reinicio el juego cuando presiono el botón "Reiniciar"
                 if ("true".equals(request.getParameter("reiniciar"))) {
-                    // Me reidirigo a la misma página para reiniciar
+                    // Redirijo a la misma página para reiniciar el juego
                     response.sendRedirect("numSecreto.jsp");
                 }
             %>

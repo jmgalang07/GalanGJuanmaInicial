@@ -12,23 +12,28 @@
     <body>
         <div class="container">
             <%
-                // Obtengo el nombre desde el formulario
+                // Inicializo un StringBuilder para acumular los resultados
+                StringBuilder resultado = new StringBuilder();
+
+                // Obtengo el nombre ingresado desde el formulario
                 String nombre = request.getParameter("nombre");
 
                 // Obtengo la fecha actual
                 LocalDate fechaActual = LocalDate.now();
 
-                // Obtengo la fecha de nacimiento del formulario
+                // Obtengo la fecha de nacimiento desde el formulario
                 String fechaNacimientoStr = request.getParameter("fecha_nacimiento");
 
+                // Verifico si se han proporcionado los datos necesarios
                 if (fechaNacimientoStr != null && !fechaNacimientoStr.isEmpty() && nombre != null && !nombre.isEmpty()) {
+                    // Parso la fecha de nacimiento desde la cadena
                     LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoStr);
 
-                    // Comparar si la fecha de nacimiento es futura
+                    // Compruebo si la fecha de nacimiento es futura
                     if (fechaNacimiento.isAfter(fechaActual)) {
-                        out.println("<p>Hola " + nombre + ", no has nacido todavía.</p>");
+                        resultado.append("<p>Hola " + nombre + ", no has nacido todavía.</p>");
                     } else {
-                        // Calcular la diferencia entre la fecha actual y la fecha de nacimiento
+                        // Calculo la diferencia entre la fecha actual y la fecha de nacimiento
                         Period periodo = Period.between(fechaNacimiento, fechaActual);
                         long diasExactos = ChronoUnit.DAYS.between(fechaNacimiento, fechaActual);
 
@@ -37,32 +42,36 @@
                         String mesStr = (periodo.getMonths() == 1) ? "mes" : "meses";
                         String yearStr = (periodo.getYears() == 1) ? "año" : "años";
 
-                        // Si tiene exactamente 1 año (sin meses ni días)
+                        // Si la persona tiene exactamente 1 año
                         if (periodo.getYears() == 1 && periodo.getMonths() == 0 && periodo.getDays() == 0) {
-                            out.println("<p>Hola " + nombre + ", has nacido hace 1 " + yearStr + ".</p>");
+                            resultado.append("<p>Hola " + nombre + ", has nacido hace 1 " + yearStr + ".</p>");
                         } // Si solo tiene días
                         else if (periodo.getYears() == 0 && periodo.getMonths() == 0) {
-                            out.println("<p>Hola " + nombre + ", has nacido hace " + diasExactos + " " + diaStr + ".</p>");
+                            resultado.append("<p>Hola " + nombre + ", has nacido hace " + diasExactos + " " + diaStr + ".</p>");
                         } // Si solo tiene meses exactos
                         else if (periodo.getYears() == 0 && periodo.getMonths() > 0 && periodo.getDays() == 0) {
-                            out.println("<p>Hola " + nombre + ", has nacido hace " + periodo.getMonths() + " " + mesStr + ".</p>");
+                            resultado.append("<p>Hola " + nombre + ", has nacido hace " + periodo.getMonths() + " " + mesStr + ".</p>");
                         } // Si tiene meses y días (sin años)
                         else if (periodo.getYears() == 0 && periodo.getMonths() > 0 && periodo.getDays() > 0) {
-                            out.println("<p>Hola " + nombre + ", has nacido hace " + periodo.getMonths() + " " + mesStr + " y " + periodo.getDays() + " " + diaStr + ".</p>");
-                        } //Si tiene años y dias (sin meses)
+                            resultado.append("<p>Hola " + nombre + ", has nacido hace " + periodo.getMonths() + " " + mesStr + " y " + periodo.getDays() + " " + diaStr + ".</p>");
+                        } // Si tiene años y días (sin meses)
                         else if (periodo.getYears() > 0 && periodo.getMonths() == 0 && periodo.getDays() > 0) {
-                            out.println("<p>Hola " + nombre + ", has nacido hace " + periodo.getYears() + " " + yearStr + " y " + periodo.getDays() + " " + diaStr + ".</p>");
+                            resultado.append("<p>Hola " + nombre + ", has nacido hace " + periodo.getYears() + " " + yearStr + " y " + periodo.getDays() + " " + diaStr + ".</p>");
                         } // Si tiene años, meses y días
                         else {
-                            out.println("<p>Hola " + nombre + ", has nacido hace " + periodo.getYears() + " " + yearStr + ", "
+                            resultado.append("<p>Hola " + nombre + ", has nacido hace " + periodo.getYears() + " " + yearStr + ", "
                                     + periodo.getMonths() + " " + mesStr + " y "
                                     + periodo.getDays() + " " + diaStr + ".</p>");
                         }
                     }
                 } else {
-                    out.println("<p>Introduce los datos correctamente.</p>");
+                    // Mensaje en caso de que los datos no sean correctos
+                    resultado.append("<p>Introduce los datos correctamente.</p>");
                 }
+
+                // Finalmente, imprimo el contenido acumulado en el StringBuilder
             %>
+            <%= resultado.toString()%>
 
             <br><br>
             <a href='../'>Volver al menú</a>

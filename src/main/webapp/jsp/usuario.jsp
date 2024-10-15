@@ -32,7 +32,7 @@
                             contador = Integer.parseInt(URLDecoder.decode(c.getValue(), "UTF-8")); // Decodifico y convierto a entero
                             cookie = c; // Almaceno la cookie del contador
                         }
-                        if (c.getName().equals("usuario")) { // Si la cookie es del usuario
+                        if (cookie.getName().equals("usuario")) { // Si la cookie es del usuario
                             // Decodifico el valor de la cookie usuario
                             usuarioGuardado = URLDecoder.decode(c.getValue(), "UTF-8"); // Decodifico el usuario guardado
                         }

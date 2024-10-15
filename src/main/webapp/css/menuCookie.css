@@ -1,0 +1,52 @@
+body {
+    font-family: Tahoma, sans-serif;
+    background-color: #f0f4f8;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contenedor {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid blue;
+    width: 45%;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 100px blue;
+}
+.botones{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: 10px;
+}
+
+input[type="submit"], input[type="button"]{
+    padding: 10px 20px;
+    background: red;
+    border-radius: 15px;
+    border: 3px solid black;
+    color: white;
+    transition: background 0.3s;
+    margin-top: 20px;
+}
+input[type="text"], input[type="password"]{
+    border-radius: 10px;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover {
+    background: green;
+}
+
+input[type="submit"]:active, input[type="button"]:active {
+    background: plum;
+}
+
+p{
+    text-align: center;
+}

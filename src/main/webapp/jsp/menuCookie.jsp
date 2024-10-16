@@ -26,11 +26,11 @@
 
                 <!-- Botones de acción -->
                 <div class="botones">
-                    <input type="submit" name="crear" value="Crear"/> 
-                    <input type="submit" name="visualizar" value="Visualizar"/> 
-                    <input type="submit" name="modificar" value="Modificar"/> 
-                    <input type="submit" name="eliminar" value="Eliminar"/> 
-                    <input type="button" value="Indice" onClick="location.href = '<%= request.getContextPath()%>'"/>
+                    <input type="submit" name="enviar" value="Crear"/> 
+                    <input type="submit" name="enviar" value="Visualizar"/> 
+                    <input type="submit" name="enviar" value="Modificar"/> 
+                    <input type="submit" name="enviar" value="Eliminar"/> 
+                    <input type="submit" name="enviar" value="Indice" onClick="location.href = '<%= request.getContextPath()%>'"/>
                 </div>
 
                 <!-- Aquí muestro cualquier mensaje que se haya pasado desde operacionCookie.jsp -->

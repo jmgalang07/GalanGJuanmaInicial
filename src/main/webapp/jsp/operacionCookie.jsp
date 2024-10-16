@@ -1,19 +1,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="javax.servlet.http.Cookie"%>
 <%
-    // Primero recibo la acción que el usuario ha seleccionado desde el formulario
-    String accion = request.getParameter("crear") != null ? "crear" :
-                    request.getParameter("visualizar") != null ? "visualizar" :
-                    request.getParameter("modificar") != null ? "modificar" :
-                    request.getParameter("eliminar") != null ? "eliminar" : null;
-
     // Recibo el nombre y el valor de la cookie desde los campos del formulario
     String nombre = request.getParameter("nombre");
     String valor = request.getParameter("valor");
 
+    // Para crear el mensaje
+    StringBuilder mensaje = new StringBuilder("menuCookie.jsp?mensaje=");
+
     // Verifica si el nombre es nulo o vacío solo para la acción de creación
-    if ("crear".equals(accion) && (nombre == null || nombre.trim().isEmpty())) {
-        response.sendRedirect("menuCookie.jsp?mensaje=El nombre de la cookie no puede estar vacio.");
+    if (request.getParameter("enviar").equals("Crear") && (nombre == null || nombre.trim().isEmpty())) {
+        mensaje.append("El nombre de la cookie no puede estar vacío.");
+        response.sendRedirect(mensaje.toString());
         return; // Termina la ejecución
     }
 
@@ -29,19 +27,19 @@
         }
     }
 
-    // Verifico cuál es la acción que el usuario seleccionó
-    if ("crear".equals(accion)) {
+    // Verifico la acción del usuario con el parámetro "enviar"
+    if (request.getParameter("enviar").equals("Crear")) {
         if (cookieExists) {
             // Si la cookie ya existe, no permito crear otra
-            response.sendRedirect("menuCookie.jsp?mensaje=La cookie ya existe. No se puede crear una nueva.");
+            mensaje.append("La cookie ya existe. No se puede crear una nueva.");
         } else {
             // Creo la cookie y la añado a la respuesta
             Cookie cookie = new Cookie(nombre, valor);
             cookie.setMaxAge(3600); // Duración de la cookie
             response.addCookie(cookie); // Añado la cookie a la respuesta para que se guarde en el navegador
-            response.sendRedirect("menuCookie.jsp?mensaje=La cookie ( " + nombre + " ) tiene un valor de ( " + valor + " )");
+            mensaje.append("La cookie ( ").append(nombre).append(" ) tiene un valor de ( ").append(valor).append(" )");
         }
-    } else if ("visualizar".equals(accion)) {
+    } else if (request.getParameter("enviar").equals("Visualizar")) {
         // Obtengo todas las cookies almacenadas en el navegador
         StringBuilder resultado = new StringBuilder();
         if (cookies != null) {
@@ -51,11 +49,11 @@
                          .append("'<br>");
             }
             request.setAttribute("resultado", resultado.toString());
+            mensaje.append("Cookies visualizadas con éxito.");
         } else {
-            request.setAttribute("resultado", "No hay cookies almacenadas.");
+            mensaje.append("No hay cookies almacenadas.");
         }
-        response.sendRedirect("menuCookie.jsp?mensaje=Cookies visualizadas con exito");
-    } else if ("modificar".equals(accion)) {
+    } else if (request.getParameter("enviar").equals("Modificar")) {
         boolean cookieFound = false;
         if (cookies != null) {
             for (Cookie c : cookies) {
@@ -68,11 +66,11 @@
             }
         }
         if (cookieFound) {
-            response.sendRedirect("menuCookie.jsp?mensaje=La cookie ( " + nombre + " ) modificada exitosamente a ( " + valor + " )");
+            mensaje.append("La cookie ( ").append(nombre).append(" ) modificada exitosamente a ( ").append(valor).append(" )");
         } else {
-            response.sendRedirect("menuCookie.jsp?mensaje=La cookie no existe. No se puede modificar.");
+            mensaje.append("La cookie no existe. No se puede modificar.");
         }
-    } else if ("eliminar".equals(accion)) {
+    } else if (request.getParameter("enviar").equals("Eliminar")) {
         boolean cookieDeleted = false;
         if (cookies != null) {
             for (Cookie c : cookies) {
@@ -85,9 +83,15 @@
             }
         }
         if (cookieDeleted) {
-            response.sendRedirect("menuCookie.jsp?mensaje=La cookie ( " + nombre + " ) con valor ( " + valor + " ) se ha eliminado.");
+            mensaje.append("La cookie ( ").append(nombre).append(" ) con valor ( ").append(valor).append(" ) se ha eliminado.");
         } else {
-            response.sendRedirect("menuCookie.jsp?mensaje=La cookie no existe. No se puede eliminar.");
+            mensaje.append("La cookie no existe. No se puede eliminar.");
         }
+    } else if (request.getParameter("enviar").equals("Indice")) {
+        // Reemplazo el contenido de mensaje con el contexto de la aplicación
+        mensaje.replace(0, mensaje.length(), request.getContextPath());
     }
+
+    // Realizo el redireccionamiento con el mensaje ya construido
+    response.sendRedirect(mensaje.toString());
 %>

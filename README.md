@@ -5,11 +5,24 @@
 - Controladores
 - Servlets
 
-Hemos aprendido el método <sub>POST</sub> y el método <sub>GET</sub>.
+### Archivos Principales
 
-<u>Hemos hecho un formulario controlado por dos controladores: </u>
-1. Con el método request.getParameterNames() para obtener los nombres de parámetros y el request.getParameterValues() para obtener los valores con un ~~BUCLE~~.
-2. Con el método getParameterMap() para acceder a todos los parámetros y sus valores con un ~~MAPA~~.
+- `index.html`: Página principal del proyecto.
+- `img/`: Carpeta que contiene imágenes utilizadas en el proyecto.
+- `jsp/`: Carpeta que contiene los archivos JSP que gestionan la lógica del formulario.
 
-*El servlets que estamos usando es: *
-+ Apache Tomcat or TomEE
+## Servidor
+
+Este proyecto está desarrollado y desplegado utilizando **Apache Tomcat** o **TomEE**, que proporcionan el entorno necesario para ejecutar aplicaciones web basadas en Java.
+
+## Funcionalidades
+
+<u>El formulario está controlado por dos controladores que manejan las solicitudes y respuestas del usuario:</u>
+
+1. **Método POST**: Utilizo `request.getParameterNames()` para obtener los nombres de los parámetros enviados en la solicitud y `request.getParameterValues()` para obtener los valores asociados a esos parámetros mediante un ~~BUCLE~~.
+  
+2. **Método GET**: Utilizo `getParameterMap()` para acceder a todos los parámetros y sus valores, facilitando el manejo de los datos a través de un ~~MAPA~~.
+
+## Aprendizajes
+
+He aprendido a gestionar formularios en el entorno web, a manejar solicitudes y a implementar servlets y controladores en Java, así como a aplicar estilos con CSS.

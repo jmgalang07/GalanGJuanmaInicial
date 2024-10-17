@@ -33,17 +33,11 @@
                     <input type="submit" name="enviar" value="Indice" onClick="location.href = '<%= request.getContextPath()%>'"/>
                 </div>
 
-                <!-- Aquí muestro cualquier mensaje que se haya pasado desde operacionCookie.jsp -->
+                <!-- Mostrar el mensaje pasado desde operacionCookie.jsp -->
                 <%
                     String mensaje = request.getParameter("mensaje");
                     if (mensaje != null) {
                         out.println("<p>" + mensaje + "</p>");
-                    }
-
-                    // Muestro el resultado si se visualizan las cookies
-                    String resultado = (String) request.getAttribute("resultado");
-                    if (resultado != null) {
-                        out.println("<div>" + resultado + "</div>");
                     }
                 %>
             </form>

@@ -16,6 +16,7 @@
     - `formValidador.css` (Estilos para `Validador.java`)
     - `index.css` (Estilos para `index.html`)
     - `menuCookie.css` (Estilos para `menuCookie.jsp`)
+    - `menuSession.css` (Estilos para `menuSession.jsp`)
     - `monedero.css` (Estilos para `monedero.jsp`)
     - `numSecreto.css` (Estilos para `numSecreto.jsp`)
     - `peticiones.css` (Estilos para `Peticiones.java`)
@@ -52,8 +53,12 @@
     - `sesiones.jsp` (Implemento un contador de sesiones y permite eliminar el contador mediante un checkbox)
     - `usuario.jsp` (Implemento un formulario para el inicio de sesión que recuerda al usuario a través de cookies)
     - `visitas.jsp` (Implemento un contador de visitas utilizando cookies)
+    - `menuSession.jsp` (Muestro un formulario al usuario y con controlSession.jsp hago los controles de sesiones.)
+    - `controlSession.jsp` (Implemento el control de sesiones para el menuSession.jsp)
   * `index.html`
 * **Source Packages**
+* * `es.albarregas.beans`
+    - `Usuario.java` (Clase java con sus respectivos atributos y getters and setters.)
   * `es.albarregas.controladores`
     - `CicloDeVida.java` (Clase que maneja el ciclo de vida de un servlet)
     - `Controlador.java` (Clase que muestra los parámetros enviados desde un formulario y gestiona solicitudes HTTP)

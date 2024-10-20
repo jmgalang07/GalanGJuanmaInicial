@@ -38,7 +38,6 @@
                         <td><button type="submit" name="operation" value="Sumar">Sumar</button></td> <!-- Botón para enviar el formulario -->
                     </tr>
                 </table>
-                <p><a href="<%=request.getContextPath()%>">Menú</a></p> <!-- Enlace para volver al menú -->
             </form>
             <%
             } else { // Si el formulario ha sido enviado
@@ -59,8 +58,10 @@
                 }
             %>
             <p><%= Calendar.getInstance().getTime()%></p> <!-- Muestro la fecha y hora actual -->
+            <div class="botones">
             <a href="ejCalculadora.jsp">Calculadora</a> <!-- Enlace para volver a la calculadora -->
             <a href="<%=request.getContextPath()%>">Menú</a> <!-- Enlace para volver al menú -->
+            </div>
         </div> <!-- Fin del contenedor -->
     </body>
 </html>

@@ -67,3 +67,10 @@ a{
 a:hover {
     color: black;
 }
+.botones{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: 10px;
+    text-align: center;
+}

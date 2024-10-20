@@ -32,7 +32,7 @@
                             contador = Integer.parseInt(URLDecoder.decode(c.getValue(), "UTF-8")); // Decodifico y convierto a entero
                             cookie = c; // Almaceno la cookie del contador
                         }
-                        if (cookie.getName().equals("usuario")) { // Si la cookie es del usuario
+                        if (c.getName().equals("usuario")) { // Verifico si la cookie es del usuario
                             // Decodifico el valor de la cookie usuario
                             usuarioGuardado = URLDecoder.decode(c.getValue(), "UTF-8"); // Decodifico el usuario guardado
                         }
@@ -55,11 +55,11 @@
                 cookie = new Cookie("contador", URLEncoder.encode("1", "UTF-8")); // Reinicio el contador a 1
                 cookie.setMaxAge(10); // Establezco la caducidad a 10 segundos
                 response.addCookie(cookie); // Agrego la cookie del contador a la respuesta
-%>
+            %>
 
             <form action="usuario.jsp" method="POST">
                 <label>Usuario: </label>
-                <input type="text" name="usuario" value="<%= usuarioGuardado%>"/>  
+                <input type="text" name="usuario" value="<%= usuarioGuardado %>"/>  
 
                 <br><br>
 
@@ -70,12 +70,12 @@
 
                 <!-- El checkbox solo se desactiva después de que se guarde el usuario, no al cargar por primera vez -->
                 <input type="checkbox" name="recordarUsuario" 
-                       <%= (formularioEnviado && !usuarioGuardado.isEmpty() ? "checked disabled" : "")%> />&nbsp;&nbsp; Recordar usuario
+                       <%= (formularioEnviado && !usuarioGuardado.isEmpty() ? "checked disabled" : "") %> />&nbsp;&nbsp; Recordar usuario
 
                 <div class="botones">
                     <input type="submit" name="enviar" value="Enviar"/> 
                     <br><br>
-                    <input type="button" name="enviar" value="Inicio" onClick="location.href = '<%= request.getContextPath()%>'"/> 
+                    <input type="button" name="enviar" value="Inicio" onClick="location.href = '<%= request.getContextPath() %>'"/> 
                 </div>
             </form>
         </div>

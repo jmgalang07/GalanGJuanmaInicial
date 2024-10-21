@@ -85,3 +85,9 @@ form {
 .medio{
     display: block;
 }
+.btn-buscar:disabled {
+    background-color: #d3d3d3; 
+    color: #7d7d7d; 
+    cursor: not-allowed; /* Muestra el cursor de prohibido */
+    opacity: 0.6; 
+}

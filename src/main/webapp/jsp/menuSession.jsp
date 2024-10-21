@@ -17,10 +17,25 @@
                         <legend>Atributo de sesión</legend>
                         <label>Nombre</label>
                         <!-- Aquí coloco un campo de búsqueda para encontrar el atributo de sesión -->
-                        <input type="search" id="buscar" name="buscar" placeholder="Ej. atributo" 
-                               value="<%= session.getAttribute("nombre") != null ? (String) session.getAttribute("nombre") : ""%>"/>
-                        <!-- Botón para buscar el atributo de sesión -->
-                        <input type="submit" name="action" value="Buscar"/>
+                        <%
+                            // Obtengo el valor de "nombre" de la sesión.
+                            String valorBusqueda = session.getAttribute("nombre") != null ? (String) session.getAttribute("nombre") : "";
+
+                            // Verifico si hay un valor para hacer el campo de solo lectura.
+                            boolean inputLectura = valorBusqueda != null && !valorBusqueda.isEmpty();
+                        %>
+                        <input type="search" name="buscar" id="buscar" placeholder="Ej. Atributo" 
+                               value="<%= valorBusqueda%>" 
+                               <% if (inputLectura) { %>readonly<% } %>/>
+
+                        <%
+                            // Verifico si el atributo 'atributoBloqueado' existe en la sesión y si es verdadero
+                            Boolean atributoBloqueado = (Boolean) session.getAttribute("atributoBloqueado");
+                            boolean botonDisabled = (atributoBloqueado != null && atributoBloqueado) || inputLectura; // Deshabilitar si está bloqueado o si el input es de solo lectura
+                        %>
+                        <!-- Botón "Buscar" que se deshabilita si 'atributoBloqueado' es verdadero o si el campo de búsqueda es de solo lectura -->
+                        <input type="submit" name="action" value="Buscar" class="btn-buscar" 
+                               <% if (botonDisabled) { %>disabled<% } %>/>
                     </fieldset>
 
                     <%
@@ -41,7 +56,7 @@
                                value="<%= nuevoUsuario != null ? nuevoUsuario.getNombre() : ""%>"/><br><br>
                         <label for="fechaNacimiento">Fecha de nacimiento</label>
                         <!-- Este campo es para seleccionar la fecha de nacimiento del usuario -->
-                        <input type="date" name="fechaNacimiento" id="fechaNacimiento" 
+                        <input type="date" name="fechaNacimiento" id="fechaNacimiento"
                                value="<%= nuevoUsuario != null ? nuevoUsuario.getFechaNacimiento() : ""%>"/><br><br>
                         <label for="numHijos">Número de hijos</label>
                         <!-- Aquí ingreso el número de hijos del usuario -->
@@ -49,7 +64,7 @@
                                value="<%= nuevoUsuario != null ? nuevoUsuario.getNumHijos() : ""%>"/><br><br>
                         <label for="salario">Salario</label>
                         <!-- Este campo permite ingresar el salario del usuario -->
-                        <input type="number" name="salario" id="salario" step="0.00" 
+                        <input type="number" name="salario" id="salario" min="0"  step="0.01" 
                                value="<%= nuevoUsuario != null ? nuevoUsuario.getSalario() : ""%>"/><br><br>
                     </fieldset>
 

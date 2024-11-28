@@ -47,7 +47,7 @@
                         Boolean confirmarEliminar = session.getAttribute("confirmarEliminar") != null && (Boolean) session.getAttribute("confirmarEliminar");
                     %>
 
-                    <% if (crear || nuevoUsuario != null) {%>
+                    <% if (crear || nuevoUsuario != null ) {%>
                     <fieldset class="medio">
                         <legend>Datos del atributo de sesión</legend>
                         <label for="nombreUsuario">Nombre</label>
@@ -105,7 +105,7 @@
                 String errorMessage = (String) session.getAttribute("errorMessage");
                 if (errorMessage != null) {
                     session.removeAttribute("errorMessage"); // Limpio el mensaje de error después de mostrarlo
-            %>
+%>
             <p style="color: red; font-weight: bold"><%= errorMessage%></p>
             <% }%>
         </div>

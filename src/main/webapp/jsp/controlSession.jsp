@@ -22,7 +22,7 @@
                 }
                 session.setAttribute("nombre", valorBusqueda); // Guardo el nombre del atributo en la sesión
             } else {
-                mensajes.append("¡El atributo de sesión está vacío!"); 
+                mensajes.append("¡El atributo de sesión está vacío!");
             }
         } else if ("Crear".equals(accion)) {
             // Verifico que todos los campos necesarios estén completos
@@ -42,30 +42,39 @@
                 session.setAttribute("crear", false); // Desactivo el formulario de creación
                 session.removeAttribute("nuevoUsuario"); // Elimino el atributo del usuario actual
                 session.setAttribute("nombre", ""); // Limpio el campo de búsqueda
-                mensajes.append("Atributo de sesión creado con nombre: '").append(valorBusqueda).append("' del usuario: ").append(nombreUsuario); 
+                mensajes.append("Atributo de sesión creado con nombre: '").append(valorBusqueda).append("' del usuario: ").append(nombreUsuario);
             } else {
                 mensajes.append("Todos los campos son obligatorios.");
             }
         } else if ("Modificar".equals(accion)) {
-            String nombreUsuario = request.getParameter("nombreUsuario"); // Obtengo el nombre del usuario
-            String fechaNacimiento = request.getParameter("fechaNacimiento"); // Obtengo la fecha de nacimiento
-            int numHijos = Integer.parseInt(request.getParameter("numHijos")); // Obtengo el número de hijos
-            double sueldoUsuario = Double.parseDouble(request.getParameter("salario")); // Obtengo el salario
-            String nombre = (String) session.getAttribute("nombre"); // Obtengo el nombre guardado en la sesión
+            // Verifico que todos los campos necesarios estén completos
+            if (!request.getParameter("nombreUsuario").isEmpty()
+                    && !request.getParameter("fechaNacimiento").isEmpty()
+                    && !request.getParameter("numHijos").isEmpty()
+                    && !request.getParameter("salario").isEmpty()) {
 
-            Usuario nuevoUsuario = (Usuario) session.getAttribute(nombre); // Uso el nombre guardado en la sesión
+                String nombreUsuario = request.getParameter("nombreUsuario"); // Obtengo el nombre del usuario
+                String fechaNacimiento = request.getParameter("fechaNacimiento"); // Obtengo la fecha de nacimiento
+                int numHijos = Integer.parseInt(request.getParameter("numHijos")); // Obtengo el número de hijos
+                double sueldoUsuario = Double.parseDouble(request.getParameter("salario")); // Obtengo el salario
+                String nombre = (String) session.getAttribute("nombre"); // Obtengo el nombre guardado en la sesión
 
-            if (nuevoUsuario != null) { // Si el usuario existe
-                nuevoUsuario.setNombre(nombreUsuario); // Actualizo el nombre
-                nuevoUsuario.setFechaNacimiento(LocalDate.parse(fechaNacimiento)); // Actualizo la fecha de nacimiento
-                nuevoUsuario.setNumHijos(numHijos); // Actualizo el número de hijos
-                nuevoUsuario.setSalario(sueldoUsuario); // Actualizo el salario
-                session.setAttribute(nombre, nuevoUsuario); // Actualizo los datos del usuario en la sesión
+                Usuario nuevoUsuario = (Usuario) session.getAttribute(nombre); // Uso el nombre guardado en la sesión
+
+                if (nuevoUsuario != null) { // Si el usuario existe
+                    nuevoUsuario.setNombre(nombreUsuario); // Actualizo el nombre
+                    nuevoUsuario.setFechaNacimiento(LocalDate.parse(fechaNacimiento)); // Actualizo la fecha de nacimiento
+                    nuevoUsuario.setNumHijos(numHijos); // Actualizo el número de hijos
+                    nuevoUsuario.setSalario(sueldoUsuario); // Actualizo el salario
+                    session.setAttribute(nombre, nuevoUsuario); // Actualizo los datos del usuario en la sesión
+                    mensajes.append("Atributo de sesión con nombre: '").append(valorBusqueda).append("' modificado correctamente."); // Mensaje de éxito
+                }
+                session.setAttribute("crear", false); // Desactivo el formulario de creación
+                session.setAttribute("nombre", ""); // Limpio el campo de búsqueda
+                session.removeAttribute("nuevoUsuario"); // Elimino el atributo del usuario actual
+            } else {
+                mensajes.append("Todos los campos son obligatorios."); // Mensaje de error si faltan campos
             }
-            mensajes.append("Atributo de sesión con nombre: '").append(valorBusqueda).append("' modificado correctamente."); // Mensaje de éxito
-            session.setAttribute("crear", false); // Desactivo el formulario de creación
-            session.setAttribute("nombre", ""); // Limpio el campo de búsqueda
-            session.removeAttribute("nuevoUsuario"); // Elimino el atributo del usuario actual
         } else if ("Eliminar".equals(accion)) { // Si la acción es "Eliminar"
             session.setAttribute("confirmarEliminar", true); // Confirmo la acción de eliminación
             session.setAttribute("nombre", valorBusqueda);  // Para recordar el nombre buscado
@@ -77,7 +86,7 @@
             session.removeAttribute("nombre"); // Elimino el atributo del nombre
             session.removeAttribute("confirmarEliminar"); // Elimino la confirmación de eliminación
 
-            mensajes.append("Atributo de sesión con nombre: '").append(valorBusqueda).append("' eliminado correctamente."); 
+            mensajes.append("Atributo de sesión con nombre: '").append(valorBusqueda).append("' eliminado correctamente.");
             session.setAttribute("crear", false); // Desactivo el formulario de creación
         } else if ("No realizar".equals(accion) || "Cancelar".equals(accion)) { // Si la acción es "No realizar" o "Cancelar"
             session.removeAttribute("nuevoUsuario"); // Elimino el atributo del usuario actual
